@@ -1,5 +1,15 @@
 #!/bin/bash
 # Based on: https://linuxconfig.org/install-wordpress-on-redhat-8
+clear
+
+echo "###############################################################################"
+echo "# WordPress Auto Installation Script for CentOS 8 by Daniele Lolli (UncleDan) #"
+echo "###############################################################################"
+echo "#"
+echo "###############################################################################"
+echo "# Editado por kmilo0327 para el uso multi sitio y automatizacion de tareas  #"
+echo "###############################################################################"
+echo .
 echo -n "¿Nombre de la pagina?: "
 read WPC8_SITE_NAME
 
@@ -20,15 +30,6 @@ WPC8_SITE_SALT6="666666666666666666666666666666SaLt66666666666666666666666666666
 WPC8_SITE_SALT7="777777777777777777777777777777SaLt777777777777777777777777777777"
 WPC8_SITE_SALT8="888888888888888888888888888888SaLt888888888888888888888888888888"
 WPC8_DATABASE_TABLES_PREFIX="wp_${WPC8_SITE_NAME}"
-
-echo "###############################################################################"
-echo "# WordPress Auto Installation Script for CentOS 8 by Daniele Lolli (UncleDan) #"
-echo "###############################################################################"
-echo "#"
-echo "###############################################################################"
-echo "# Editado por kmilo0327 para el uso multi sitio y automatizacion de tareas  #"
-echo "###############################################################################"
-sleep 5
 
 echo -e "\n\n*** Actualizando el sistema"
 yum update upgrade -y 
