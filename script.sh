@@ -7,7 +7,7 @@ echo "# WordPress Auto Installation Script for CentOS 8 by Daniele Lolli (UncleD
 echo "###############################################################################"
 echo "#"
 echo "###############################################################################"
-echo "# Editado por kmilo0327 para el uso multi sitio y automatizacion de tareas  #"
+echo "# Editado por kmilo0327 para el uso multi sitio y automatizacion de tareas    #"
 echo "###############################################################################"
 echo .
 echo -n "¿Nombre de la pagina?: "
