@@ -31,7 +31,7 @@ WPC8_SITE_SALT7="777777777777777777777777777777SaLt77777777777777777777777777777
 WPC8_SITE_SALT8="888888888888888888888888888888SaLt888888888888888888888888888888"
 WPC8_DATABASE_TABLES_PREFIX="wp_${WPC8_SITE_NAME}"
 
-echo -e "\n\n*** Actualizando el sistema"
+echo -e "\n\n*** Actualizando el sistema..."
 yum update -y && yum upgrade -y
 
 echo -e "\n\n*** START Installing all prerequisites..."
