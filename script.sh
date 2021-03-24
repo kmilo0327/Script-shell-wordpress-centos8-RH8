@@ -32,7 +32,7 @@ WPC8_SITE_SALT8="888888888888888888888888888888SaLt88888888888888888888888888888
 WPC8_DATABASE_TABLES_PREFIX="wp_${WPC8_SITE_NAME}"
 
 echo -e "\n\n*** Actualizando el sistema"
-yum update upgrade -y 
+yum update -y && yum upgrade -y
 
 echo -e "\n\n*** START Installing all prerequisites..."
 dnf install httpd mariadb-server php-bcmath php-curl php-fpm php-gd php-intl php-json php-mbstring php-mysqlnd php-soap php-xml php-xmlrpc php-zip unzip -y
