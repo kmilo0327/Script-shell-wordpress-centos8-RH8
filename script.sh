@@ -1,5 +1,6 @@
 #!/bin/bash
 # Based on: https://linuxconfig.org/install-wordpress-on-redhat-8
+
 clear
 
 echo "###############################################################################"
@@ -13,6 +14,8 @@ echo .
 echo -n "¿Nombre de la pagina?: "
 read WPC8_SITE_NAME
 
+echo -n "¿Dominio de la pagina? ex(.com .org)(add dot):  "
+read WPC8_SITE_DOMAIN
 
 # Setting parameters
 WPC8_MYSQL_WORDPRESS_DATABASE="${WPC8_SITE_NAME}_database"
@@ -144,6 +147,7 @@ echo "*** DONE Removing useless themes and plugins and installing useful ones."
 echo -e "\n\n*** START Moving the extracted WordPress directory into the /var/www/ folder..."
 mv -f wordpress $WPC8_SITE_FOLDER
 
+
 echo "*** DONE Moving the extracted WordPress directory into the /var/www/ folder."
 echo -e "\n\n*** START Adjusting permissions and change file SELinux security context..."
 chown -R apache:apache $WPC8_SITE_FOLDER/
@@ -168,20 +172,20 @@ echo "*** DONE Adjusting PHP parameters for file uploads, memory usage and time 
 
 echo -e "\n\n*** Creando archivo Virtual Host."
 
-mkdir /etc/httpd/sites-available
-mkdir /var/log/httpd/${WPC8_SITE_NAME}
+touch /etc/httpd/conf.d/${WPC8_SITE_NAME}.conf
+mkdir /var/log/httpd/${WPC8_SITE_NAME}/
 
-touch /etc/httpd/sites-available/vhost.vonf
-echo "include sites-available/*.conf"
->> /etc/httpd/conf/httpd.conf
-echo "
-<virtualHost *:80 *:443>
-#ServerAdmin webmaster@dummy-host.example.com
-DocumentRoot "/var/www/${WPC8_SITE_NAME}"
-ServerName ${WPC8_SITE_NAME}.tk
-ErrorLog log/${WPC8_SITE_NAME}/error.log
-CustomLog log/${WPC8_SITE_NAME}/access.log common
-</VirtualHost>" >> /etc/httpd/sites-available/vhost.vonf
+echo "<VirtualHost *:80>
+  ServerName ${WPC8_SITE_NAME}${WPC8_SITE_DOMAIN}
+  ServerAlias www.${WPC8_SITE_NAME}${WPC8_SITE_DOMAIN}
+  DocumentRoot /var/www/${WPC8_SITE_NAME}
+  <Directory /var/www/${WPC8_SITE_NAME}>
+      Options -Indexes +FollowSymLinks
+      AllowOverride All
+  </Directory>
+  ErrorLog /var/log/httpd/${WPC8_SITE_NAME}/${WPC8_SITE_NAME}-error.log
+  CustomLog /var/log/httpd/${WPC8_SITE_NAME}/${WPC8_SITE_NAME}-access.log combined
+</VirtualHost>" >> /etc/httpd/conf.d/${WPC8_SITE_NAME}.conf
 
 
 echo -e "\n\n*** START Enabling PHP execution tu use Duplicator plugin..."
@@ -218,3 +222,4 @@ echo "Nombre usuario Mysql: $WPC8_MYSQL_WORDPRESS_USER "
 echo "Contraseña Mysql: $WPC8_MYSQL_WORDPRESS_PASSWORD "
 echo "Contraseña ROOT Mysql: $WPC8_MYSQL_ROOT_PASSWORD "
 echo "Ruta WordPress: $WPC8_SITE_FOLDER "
+echo "Prefijo: $WPC8_DATABASE_TABLES_PREFIX"
