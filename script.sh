@@ -223,3 +223,5 @@ echo "Contraseña Mysql: $WPC8_MYSQL_WORDPRESS_PASSWORD "
 echo "Contraseña ROOT Mysql: $WPC8_MYSQL_ROOT_PASSWORD "
 echo "Ruta WordPress: $WPC8_SITE_FOLDER "
 echo "Prefijo: $WPC8_DATABASE_TABLES_PREFIX"
+
+test
